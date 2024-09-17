@@ -1,8 +1,14 @@
 package com.carbon.codemine
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
+import androidx.compose.ui.res.loadSvgPainter
+import androidx.compose.ui.res.painterResource
 import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
@@ -33,7 +39,7 @@ class ReminderTimer {
 
     private var startAt: Long = 0
 
-    private val remindPer = 1.minutes
+    private val remindPer = 10.seconds
 
 
     fun startup() {
@@ -58,6 +64,7 @@ class RemindToBreakDialog : DialogWrapper(false) {
         title = "休息一下吧"
         isOKActionEnabled = false
         setCancelButtonText("稍后提醒")
+        isResizable = false
         init()
     }
 
@@ -78,7 +85,7 @@ class RemindToBreakDialog : DialogWrapper(false) {
     override fun createCenterPanel(): JComponent {
         return ComposePanel().apply {
             setContent {
-                Text("Code Mine")
+                Image(painterResource("/images/break_time.gif"), null, Modifier.wrapContentSize())
             }
         }
     }
