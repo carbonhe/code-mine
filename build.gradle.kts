@@ -1,7 +1,9 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("org.jetbrains.intellij") version "1.17.4"
+    id("org.jetbrains.compose") version "1.6.10"
+    kotlin("plugin.compose") version "2.0.0"
 }
 
 group = "com.carbon"
@@ -9,8 +11,15 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    google()
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
 }
 
+
+dependencies {
+    implementation(compose.desktop.currentOs)
+
+}
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
